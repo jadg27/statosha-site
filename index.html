@@ -9,7 +9,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Stat OSHA">
 <meta name="twitter:description" content="OSHA 10/30, NYC SST, CPR, forklift &amp; more — booked and tracked for your crew.">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"EducationalOrganization","name":"Stat OSHA","description":"OSHA-authorized safety training and managed compliance for construction crews across Nassau, Suffolk, and the NY metro.","telephone":"+1-813-812-4269","email":"lzafiri45@gmail.com","areaServed":["Nassau County, NY","Suffolk County, NY","New York City metropolitan area"],"knowsAbout":["OSHA 10","OSHA 30","NYC Site Safety Training","CPR","Forklift Certification","HAZWOPER"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"EducationalOrganization","name":"Stat OSHA","description":"OSHA-authorized safety training and managed compliance for construction crews across Nassau, Suffolk, and the NY metro.","telephone":"+1-813-812-4269","email":"info@statosha.com","areaServed":["Nassau County, NY","Suffolk County, NY","New York City metropolitan area"],"knowsAbout":["OSHA 10","OSHA 30","NYC Site Safety Training","CPR","Forklift Certification","HAZWOPER"]}</script>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -448,7 +448,7 @@
         <p class="lede">Send the crew size and what you need. We confirm seats and dates — payment up front, then we reserve.</p>
         <div class="ci">
           <div class="ci-item"><div><div class="k">Phone / Text</div><a class="v" href="tel:+18138124269" style="text-decoration:none;">813-812-4269</a></div><button class="copy" data-copy="813-812-4269">Copy</button></div>
-          <div class="ci-item"><div><div class="k">Booking Email</div><a class="v" href="mailto:lzafiri45@gmail.com" style="text-decoration:none;">lzafiri45@gmail.com</a></div><button class="copy" data-copy="lzafiri45@gmail.com">Copy</button></div>
+          <div class="ci-item"><div><div class="k">Booking Email</div><a class="v" href="mailto:info@statosha.com" style="text-decoration:none;">info@statosha.com</a></div><button class="copy" data-copy="info@statosha.com">Copy</button></div>
           <div class="ci-item"><div><div class="k">Coverage</div><div class="v">Nassau · Suffolk · NY Metro</div></div></div>
         </div>
       </div>
@@ -473,7 +473,7 @@
     <a data-nav="crew" href="#crew">Crew Check</a>
     <a data-nav="contact" href="#contact">Contact</a>
   </div>
-  <div class="foot-contact"><a href="tel:+18138124269">813-812-4269</a><a href="mailto:lzafiri45@gmail.com">lzafiri45@gmail.com</a><span>Nassau · Suffolk · NY Metro</span></div>
+  <div class="foot-contact"><a href="tel:+18138124269">813-812-4269</a><a href="mailto:info@statosha.com">info@statosha.com</a><span>Nassau · Suffolk · NY Metro</span></div>
   <div class="mono">© 2026 Stat OSHA · a safety-training service</div>
 </div></div></footer>
 <div class="specrule"></div>
@@ -644,8 +644,8 @@
     if(!n.value.trim()||!c.value.trim()){ m.textContent='Add a name and a way to reach you.'; (n.value.trim()?c:n).focus(); return; }
     var subject='Training request — '+n.value.trim();
     var body='Name / Company: '+n.value.trim()+'\nContact: '+c.value.trim()+'\nCrew size: '+cr.value+'\n\nWhat they need:\n'+(nd.value.trim()||'(none provided)');
-    window.location.href='mailto:lzafiri45@gmail.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
-    m.textContent='Opening your email app with your request pre-filled. If nothing opens, email lzafiri45@gmail.com directly.';
+    window.location.href='mailto:info@statosha.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+    m.textContent='Opening your email app with your request pre-filled. If nothing opens, email info@statosha.com directly.';
     lf.querySelector('button[type=submit]').textContent='Request Sent ✓';
   });
 
@@ -702,7 +702,7 @@
       document.getElementById('trkSample').addEventListener('click',function(){ function d(n){var x=new Date();x.setDate(x.getDate()+n);return x.toISOString().slice(0,10);} data.workers=[{id:uid(),name:'J. Marin',trade:'Foreman',creds:[{id:uid(),course:'OSHA 30 (Construction)',expiry:d(400)},{id:uid(),course:'NYC SST Supervisor (62-Hr)',expiry:d(210)}]},{id:uid(),name:'T. Flores',trade:'Laborer',creds:[{id:uid(),course:'OSHA 10 (Construction)',expiry:d(560)},{id:uid(),course:'CPR / First Aid / AED',expiry:d(18)}]},{id:uid(),name:'R. Okoye',trade:'Equipment Op',creds:[{id:uid(),course:'Forklift / PIT Operator',expiry:d(-12)}]}]; save(data); render(); });
       document.getElementById('trkClear').addEventListener('click',function(){ if(confirm('Clear your entire roster from this browser?')){ data={workers:[]}; save(data); render(); } });
       document.getElementById('trkExport').addEventListener('click',function(e){ var rows=[['Worker','Trade','Credential','Expiry','Status']]; data.workers.forEach(function(w){ if(!w.creds.length) rows.push([w.name,w.trade||'','','','']); w.creds.forEach(function(c){ rows.push([w.name,w.trade||'',c.course,c.expiry||'',status(c.expiry).txt]); }); }); var csv=rows.map(function(r){return r.map(function(v){return '"'+String(v).replace(/"/g,'""')+'"';}).join(',');}).join('\n'); var btn=e.currentTarget||document.getElementById('trkExport'); function fin(){var o=btn.textContent;btn.textContent='Copied \u2713';setTimeout(function(){btn.textContent=o;},1400);} try{ navigator.clipboard.writeText(csv).then(fin,fin); }catch(err){ fin(); } });
-      document.getElementById('trkEmail').addEventListener('click',function(){ var lines=[]; data.workers.forEach(function(w){ lines.push('- '+w.name+(w.trade?' ('+w.trade+')':'')); w.creds.forEach(function(c){ lines.push('    * '+c.course+(c.expiry?' - exp '+c.expiry+' ['+status(c.expiry).txt+']':'')); }); }); var body='Here is our crew roster - please help us manage renewals:\n\n'+(lines.join('\n')||'(empty)'); window.location.href='mailto:lzafiri45@gmail.com?subject='+encodeURIComponent('Crew roster - managed compliance')+'&body='+encodeURIComponent(body); });
+      document.getElementById('trkEmail').addEventListener('click',function(){ var lines=[]; data.workers.forEach(function(w){ lines.push('- '+w.name+(w.trade?' ('+w.trade+')':'')); w.creds.forEach(function(c){ lines.push('    * '+c.course+(c.expiry?' - exp '+c.expiry+' ['+status(c.expiry).txt+']':'')); }); }); var body='Here is our crew roster - please help us manage renewals:\n\n'+(lines.join('\n')||'(empty)'); window.location.href='mailto:info@statosha.com?subject='+encodeURIComponent('Crew roster - managed compliance')+'&body='+encodeURIComponent(body); });
       render();
     }
   })();
