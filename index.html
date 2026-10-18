@@ -19,7 +19,7 @@
      ground, brand gold, a safety-orange hairline accent, condensed Saira display. Hash router swaps
      <section data-page>. Field-document motif: spec rules, CFR reference tags, monospaced metadata. */
   :root {
-    --bg:#0a0d13; --surface:#13203a; --surface2:#1a2a49; --fg:#f2f1ee; --muted:#8fa0b8; --line:#26384f;
+    --bg:#18253b; --surface:#22324e; --surface2:#2d4061; --fg:#f4f7fb; --muted:#b6c3d6; --line:#39506e;
     --gold:#fb6101; --gold-dim:#c74e05; --orange:#fb6101; --navy:#1e3a5f; --good:#5bbd87;
     --f-disp:"Saira Condensed",sans-serif; --f-body:"Spline Sans",system-ui,sans-serif; --f-mono:"Spline Sans Mono",ui-monospace,monospace;
     color-scheme: dark;
@@ -38,7 +38,7 @@
   .specrule { height: 4px; background: repeating-linear-gradient(90deg, var(--orange) 0 24px, transparent 24px 38px); opacity: .7; }
 
   /* nav */
-  header.nav { position: sticky; top: env(safe-area-inset-top,0px); z-index: 50; background: rgba(11,11,12,.93); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+  header.nav { position: sticky; top: env(safe-area-inset-top,0px); z-index: 50; background: rgba(24,37,59,.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
   .nav-row { display: flex; align-items: center; justify-content: space-between; padding-block: 13px; gap: 14px; }
   .brand { display: flex; align-items: center; gap: 11px; text-decoration: none; min-width: 0; }
   .glyph { width: 40px; height: 40px; flex: none; display: grid; place-items: center; background: linear-gradient(135deg,var(--gold),var(--orange)); color: #0a0a0a; font-family: var(--f-disp); font-weight: 700; font-size: 1.3rem; }
@@ -271,6 +271,18 @@
   .ps-formhead span{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.09em;color:var(--muted);text-transform:uppercase;}
   .ps-fine{font-family:var(--f-mono);font-size:.68rem;color:var(--muted);letter-spacing:.03em;line-height:1.5;margin:2px 0 0;}
   #psMsg{font-family:var(--f-mono);font-size:.8rem;color:var(--gold);min-height:1.1em;}
+  /* live crew-compliance card */
+  .hv{position:relative;overflow:hidden;}
+  .hv::after{content:"";position:absolute;left:0;right:0;top:-44px;height:44px;background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--good) 12%,transparent),transparent);animation:hvsweep 6s linear infinite;pointer-events:none;}
+  .hv-head .dot{animation:hvpulse 1.7s ease-in-out infinite;}
+  .hv-body .cred-row{animation:rowscan 7.2s linear infinite;}
+  .hv-body .cred-row:nth-child(2){animation-delay:1.05s;}
+  .hv-body .cred-row:nth-child(3){animation-delay:2.1s;}
+  .hv-body .cred-row:nth-child(4){animation-delay:3.15s;}
+  @keyframes hvpulse{0%,100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--good) 60%,transparent);}70%,100%{box-shadow:0 0 0 6px color-mix(in srgb,var(--good) 0%,transparent);}}
+  @keyframes rowscan{0%{background:transparent;}3%{background:color-mix(in srgb,var(--good) 16%,transparent);}13%{background:transparent;}100%{background:transparent;}}
+  @keyframes hvsweep{0%{transform:translateY(0);}100%{transform:translateY(420px);}}
+  @media (prefers-reduced-motion: reduce){.hv::after,.hv-head .dot,.hv-body .cred-row{animation:none;}}
   @media (prefers-reduced-motion: reduce){ * { transition: none !important; } }
 </style>
 
@@ -386,19 +398,15 @@
         <span class="gt">Provider: Predictive Safety</span>
         <p class="gd">Explore eligible OSHA Construction training and NYC DOB-approved Site Safety Training (SST) courses offered by Predictive Safety through SST.NYC. Stat OSHA helps workers and companies find training options and submit course inquiries. Predictive Safety is the training provider.</p>
       </div>
-
       <div class="ps-disclose">
         <strong>Training is provided by Predictive Safety.</strong> Course availability, eligibility, delivery format, and completion requirements depend on the specific course.
         <span class="ps-attrib">Training provider: Predictive Safety &nbsp;&middot;&nbsp; Course platform: SST.NYC</span>
       </div>
-
       <a class="btn btn-ghost ps-link" id="psLink" href="#" hidden rel="noopener">Visit SST.NYC &rarr;</a>
-
       <div class="btn-row">
         <button type="button" class="btn btn-solid ps-ask" data-topic="OSHA & SST Training">Ask About OSHA &amp; SST Training</button>
         <button type="button" class="btn btn-ghost ps-ask" data-topic="Crew Training">Ask About Crew Training</button>
       </div>
-
       <form class="lead ps-form" id="psInquiry" novalidate style="margin-top:26px;max-width:640px;">
         <div class="ps-formhead">Training Inquiry <span>&mdash; Predictive Safety / SST.NYC</span></div>
         <input type="hidden" id="ps-topic" name="inquiry_type" value="General">
@@ -696,11 +704,11 @@
     e.preventDefault();
     var n=document.getElementById('l-name'), c=document.getElementById('l-contact'), cr=document.getElementById('l-crew'), nd=document.getElementById('l-need'), m=document.getElementById('leadMsg');
     if(!n.value.trim()||!c.value.trim()){ m.textContent='Add a name and a way to reach you.'; (n.value.trim()?c:n).focus(); return; }
-    var subject='Training request — '+n.value.trim();
-    var body='Name / Company: '+n.value.trim()+'\nContact: '+c.value.trim()+'\nCrew size: '+cr.value+'\n\nWhat they need:\n'+(nd.value.trim()||'(none provided)');
-    window.location.href='mailto:info@statosha.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
-    m.textContent='Opening your email app with your request pre-filled. If nothing opens, email info@statosha.com directly.';
-    lf.querySelector('button[type=submit]').textContent='Request Sent ✓';
+    var sb=lf.querySelector('button[type=submit]'), ob=sb.textContent; sb.textContent='Sending…'; sb.disabled=true; m.style.color='var(--muted)'; m.textContent='';
+    fetch('https://formsubmit.co/ajax/info@statosha.com', { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body: JSON.stringify({ _subject:'New Stat OSHA booking request', _template:'table', _captcha:'false', name_company:n.value.trim(), contact:c.value.trim(), crew_size:cr.value, details:(nd.value.trim()||'(none provided)') }) })
+      .then(function(r){ return r.json().catch(function(){return {};}); })
+      .then(function(){ m.style.color='var(--gold)'; m.textContent='Thanks — your request was sent. We’ll be in touch shortly.'; sb.textContent='Request Sent ✓'; lf.reset(); })
+      .catch(function(){ m.style.color='var(--orange)'; m.textContent='Could not send automatically — please email info@statosha.com directly.'; sb.textContent=ob; sb.disabled=false; });
   });
 
   // ---- crew credential tracker (localStorage) ----
