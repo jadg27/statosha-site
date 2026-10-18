@@ -392,7 +392,6 @@
         <span class="ps-attrib">Training provider: Predictive Safety &nbsp;&middot;&nbsp; Course platform: SST.NYC</span>
       </div>
 
-      <!-- Partnership link placeholder: hidden until the SST.NYC link / partnership is confirmed. Set href and remove hidden to activate. -->
       <a class="btn btn-ghost ps-link" id="psLink" href="#" hidden rel="noopener">Visit SST.NYC &rarr;</a>
 
       <div class="btn-row">
@@ -761,6 +760,8 @@
       render();
     }
   })();
+</script>
+
 <script>
   (function(){
     var form = document.getElementById('psInquiry');
@@ -777,30 +778,13 @@
       if(!name.value.trim() || !email.value.trim()){ msg.style.color='var(--orange)'; msg.textContent='Add your name and email so we can follow up.'; (name.value.trim()?email:name).focus(); return; }
       var btn=form.querySelector('button[type=submit]'), orig=btn.textContent;
       btn.textContent='Sending…'; btn.disabled=true; msg.style.color='var(--muted)'; msg.textContent='';
-      var payload={
-        inquiry_type: val('ps-topic')||'General',
-        name: val('ps-name'), email: val('ps-email'), phone: val('ps-phone'),
-        company: val('ps-company'), course_interest: val('ps-course'),
-        crew_size: val('ps-crew'), format_or_location: val('ps-format'),
-        _subject: 'New Stat OSHA / Predictive Safety training inquiry',
-        _template: 'table', _captcha: 'false'
-      };
+      var payload={ inquiry_type: val('ps-topic')||'General', name: val('ps-name'), email: val('ps-email'), phone: val('ps-phone'), company: val('ps-company'), course_interest: val('ps-course'), crew_size: val('ps-crew'), format_or_location: val('ps-format'), _subject: 'New Stat OSHA / Predictive Safety training inquiry', _template: 'table', _captcha: 'false' };
       fetch(FORM_ENDPOINT, { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body: JSON.stringify(payload) })
         .then(function(r){ return r.json().catch(function(){return {};}); })
-        .then(function(){
-          msg.style.color='var(--gold)';
-          msg.textContent='Thanks — your inquiry is on its way. We’ll follow up to explore options with Predictive Safety.';
-          btn.textContent='Inquiry Sent ✓'; form.reset();
-        })
-        .catch(function(){
-          msg.style.color='var(--orange)';
-          msg.textContent='Could not send automatically — please email info@statosha.com directly.';
-          btn.textContent=orig; btn.disabled=false;
-        });
+        .then(function(){ msg.style.color='var(--gold)'; msg.textContent='Thanks — your inquiry is on its way. We’ll follow up to explore options with Predictive Safety.'; btn.textContent='Inquiry Sent ✓'; form.reset(); })
+        .catch(function(){ msg.style.color='var(--orange)'; msg.textContent='Could not send automatically — please email info@statosha.com directly.'; btn.textContent=orig; btn.disabled=false; });
     });
   })();
-</script>
-
 </script>
 
 </body></html>
