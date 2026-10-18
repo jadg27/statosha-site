@@ -263,6 +263,14 @@
   .pkg-price .now{font-family:var(--f-disp);font-size:1.9rem;font-weight:600;color:var(--gold);line-height:1;}
   .pkg-price .per{font-family:var(--f-mono);font-size:.6rem;color:var(--muted);letter-spacing:.07em;}
   .pkg-cta{justify-content:center;font-size:.72rem;padding:12px 16px;}
+  /* Predictive Safety / SST.NYC section */
+  .ps-disclose{border:1px solid var(--line);border-left:3px solid var(--orange);background:var(--surface);padding:14px 16px;font-size:.92rem;color:var(--fg);line-height:1.55;margin:6px 0 18px;}
+  .ps-disclose strong{color:var(--fg);}
+  .ps-attrib{display:block;margin-top:9px;font-family:var(--f-mono);font-size:.63rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);}
+  .ps-formhead{font-family:var(--f-disp);font-size:1.3rem;text-transform:uppercase;letter-spacing:.02em;margin-bottom:2px;}
+  .ps-formhead span{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.09em;color:var(--muted);text-transform:uppercase;}
+  .ps-fine{font-family:var(--f-mono);font-size:.68rem;color:var(--muted);letter-spacing:.03em;line-height:1.5;margin:2px 0 0;}
+  #psMsg{font-family:var(--f-mono);font-size:.8rem;color:var(--gold);min-height:1.1em;}
   @media (prefers-reduced-motion: reduce){ * { transition: none !important; } }
 </style>
 
@@ -370,6 +378,53 @@
     </div>
     <div id="catalog"></div>
     <div class="btn-row"><a class="btn btn-solid" data-nav="crew" href="#crew">Not Sure What You Need? →</a></div>
+
+    <!-- ===== Predictive Safety / SST.NYC training (provider-attributed) ===== -->
+    <div class="group" id="predictive" style="margin-top:52px;">
+      <div class="group-head">
+        <h3>OSHA Construction &amp; NYC Site Safety Training</h3>
+        <span class="gt">Provider: Predictive Safety</span>
+        <p class="gd">Explore eligible OSHA Construction training and NYC DOB-approved Site Safety Training (SST) courses offered by Predictive Safety through SST.NYC. Stat OSHA helps workers and companies find training options and submit course inquiries. Predictive Safety is the training provider.</p>
+      </div>
+
+      <div class="ps-disclose">
+        <strong>Training is provided by Predictive Safety.</strong> Course availability, eligibility, delivery format, and completion requirements depend on the specific course.
+        <span class="ps-attrib">Training provider: Predictive Safety &nbsp;&middot;&nbsp; Course platform: SST.NYC</span>
+      </div>
+
+      <!-- Partnership link placeholder: hidden until the SST.NYC link / partnership is confirmed. Set href and remove hidden to activate. -->
+      <a class="btn btn-ghost ps-link" id="psLink" href="#" hidden rel="noopener">Visit SST.NYC &rarr;</a>
+
+      <div class="btn-row">
+        <button type="button" class="btn btn-solid ps-ask" data-topic="OSHA & SST Training">Ask About OSHA &amp; SST Training</button>
+        <button type="button" class="btn btn-ghost ps-ask" data-topic="Crew Training">Ask About Crew Training</button>
+      </div>
+
+      <form class="lead ps-form" id="psInquiry" novalidate style="margin-top:26px;max-width:640px;">
+        <div class="ps-formhead">Training Inquiry <span>&mdash; Predictive Safety / SST.NYC</span></div>
+        <input type="hidden" id="ps-topic" name="inquiry_type" value="General">
+        <div><label for="ps-name">Name</label><input id="ps-name" name="name" type="text" autocomplete="name" required></div>
+        <div><label for="ps-email">Email</label><input id="ps-email" name="email" type="email" autocomplete="email" required></div>
+        <div><label for="ps-phone">Phone (optional)</label><input id="ps-phone" name="phone" type="tel" autocomplete="tel"></div>
+        <div><label for="ps-company">Company</label><input id="ps-company" name="company" type="text" autocomplete="organization"></div>
+        <div><label for="ps-course">Course interest</label>
+          <select id="ps-course" name="course_interest">
+            <option value="">Select a course…</option>
+            <option>OSHA 10 — Construction</option>
+            <option>OSHA 30 — Construction</option>
+            <option>NYC SST Worker (40-Hour)</option>
+            <option>NYC SST Supervisor (62-Hour)</option>
+            <option>SST refresher / modules</option>
+            <option>Not sure — need guidance</option>
+          </select></div>
+        <div><label for="ps-crew">Approximate crew size</label>
+          <select id="ps-crew" name="crew_size"><option>Just me (1)</option><option>2–5</option><option>6–15</option><option>16–40</option><option>40+</option></select></div>
+        <div><label for="ps-format">Preferred format or location</label><input id="ps-format" name="format_or_location" type="text" placeholder="e.g. Online, or in-person near Patchogue, NY"></div>
+        <button type="submit" class="btn btn-solid" style="justify-content:center;">Submit Inquiry →</button>
+        <div id="psMsg" role="status" aria-live="polite"></div>
+        <p class="ps-fine">No payment is taken here. Submitting an inquiry does not confirm a booking, a seat, or a crew schedule — we’ll follow up to explore options with Predictive Safety.</p>
+      </form>
+    </div>
   </div></div></div>
 </section>
 
@@ -421,7 +476,7 @@
 <section data-page="tracker">
   <div class="pad"><div class="wrap"><div class="in">
     <div class="shead"><span class="k">04 / Compliance Tracker</span><h2>Track Your Crew</h2></div>
-    <p class="lede" style="margin-bottom:16px;">Add your workers and the cards they hold. Stat OSHA flags what's expiring before it lapses — so an audit never catches you short. Book a renewal in one click.</p>
+    <p class="lede" style="margin-bottom:16px;"><b>Know who’s trained, what’s missing, and what’s coming due.</b> Add your workers and the cards they hold — Stat OSHA flags what's expiring before it lapses, so an audit never catches you short. Book a renewal in one click.</p>
     <div class="trk-note">Your roster saves privately in this browser, on this device — nothing is uploaded. Export it anytime, or email it to us and we'll manage the renewals for you.</div>
     <div class="trk-sum" id="trkSum"></div>
     <form class="trk-add" id="wkAdd">
@@ -706,6 +761,46 @@
       render();
     }
   })();
+<script>
+  (function(){
+    var form = document.getElementById('psInquiry');
+    if(!form) return;
+    var FORM_ENDPOINT = 'https://formsubmit.co/ajax/info@statosha.com';
+    function val(id){ var el=document.getElementById(id); return el?el.value.trim():''; }
+    function go(){ form.scrollIntoView({behavior:'smooth',block:'start'}); var n=document.getElementById('ps-name'); if(n) setTimeout(function(){ try{n.focus();}catch(e){} },300); }
+    document.querySelectorAll('.ps-ask').forEach(function(b){
+      b.addEventListener('click', function(){ var t=document.getElementById('ps-topic'); if(t) t.value=b.getAttribute('data-topic'); go(); });
+    });
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var name=document.getElementById('ps-name'), email=document.getElementById('ps-email'), msg=document.getElementById('psMsg');
+      if(!name.value.trim() || !email.value.trim()){ msg.style.color='var(--orange)'; msg.textContent='Add your name and email so we can follow up.'; (name.value.trim()?email:name).focus(); return; }
+      var btn=form.querySelector('button[type=submit]'), orig=btn.textContent;
+      btn.textContent='Sending…'; btn.disabled=true; msg.style.color='var(--muted)'; msg.textContent='';
+      var payload={
+        inquiry_type: val('ps-topic')||'General',
+        name: val('ps-name'), email: val('ps-email'), phone: val('ps-phone'),
+        company: val('ps-company'), course_interest: val('ps-course'),
+        crew_size: val('ps-crew'), format_or_location: val('ps-format'),
+        _subject: 'New Stat OSHA / Predictive Safety training inquiry',
+        _template: 'table', _captcha: 'false'
+      };
+      fetch(FORM_ENDPOINT, { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body: JSON.stringify(payload) })
+        .then(function(r){ return r.json().catch(function(){return {};}); })
+        .then(function(){
+          msg.style.color='var(--gold)';
+          msg.textContent='Thanks — your inquiry is on its way. We’ll follow up to explore options with Predictive Safety.';
+          btn.textContent='Inquiry Sent ✓'; form.reset();
+        })
+        .catch(function(){
+          msg.style.color='var(--orange)';
+          msg.textContent='Could not send automatically — please email info@statosha.com directly.';
+          btn.textContent=orig; btn.disabled=false;
+        });
+    });
+  })();
+</script>
+
 </script>
 
 </body></html>
